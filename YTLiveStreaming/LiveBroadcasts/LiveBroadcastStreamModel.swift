@@ -113,13 +113,13 @@ public struct LiveBroadcastStreamModel: Codable {
      @return
      **/
     public struct Thumbnails: Codable {
-        public let def: Thumbnail
-        public let height: Thumbnail
-        public let medium: Thumbnail
+        public let def: Thumbnail?
+        public let high: Thumbnail?
+        public let medium: Thumbnail?
 
         enum CodingKeys: String, CodingKey {
             case def = "default"
-            case height = "high"
+            case high
             case medium
         }
     }
@@ -132,18 +132,19 @@ public struct LiveBroadcastStreamModel: Codable {
 
     public struct ContentDetails: Codable {
         public let boundStreamId: String?
-        public let boundStreamLastUpdateTimeMs: Int
-        public let monitorStream: MonitorStream
-        public let enableEmbed: Bool
-        public let enableDvr: Bool
-        public let recordFromStart: Bool
-        public let enableClosedCaptions: Bool
-        public let closedCaptionsType: String
-        public let projection: String
-        public let enableLowLatency: Bool
-        public let latencyPreference: Bool
-        public let enableAutoStart: Bool
-        public let enableAutoStop: Bool
+        public let boundStreamLastUpdateTimeMs: Int?
+        public let monitorStream: MonitorStream?
+        public let enableEmbed: Bool?
+        public let enableDvr: Bool?
+        public let enableContentEncryption: Bool?
+        public let recordFromStart: Bool?
+        public let enableClosedCaptions: Bool?
+        public let closedCaptionsType: String?
+        public let projection: String?
+        public let enableLowLatency: Bool?
+        public let latencyPreference: String?
+        public let enableAutoStart: Bool?
+        public let enableAutoStop: Bool?
     }
 
     public struct MonitorStream: Codable {

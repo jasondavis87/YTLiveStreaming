@@ -1,0 +1,57 @@
+{
+  "kind": "youtube#liveBroadcast",
+  "etag": "abc123etag",
+  "id": "test_broadcast_id",
+  "snippet": {
+    "publishedAt": "2024-01-01T12:00:00Z",
+    "channelId": "UCtest_channel_id",
+    "title": "Test Live Broadcast",
+    "description": "Test broadcast description",
+    "thumbnails": {
+      "default": {
+        "url": "https://i.ytimg.com/vi/test_id/default_live.jpg",
+        "width": 120,
+        "height": 90
+      },
+      "medium": {
+        "url": "https://i.ytimg.com/vi/test_id/mqdefault_live.jpg",
+        "width": 320,
+        "height": 180
+      },
+      "high": {
+        "url": "https://i.ytimg.com/vi/test_id/hqdefault_live.jpg",
+        "width": 480,
+        "height": 360
+      }
+    },
+    "scheduledStartTime": "2024-01-01T13:00:00Z",
+    "scheduledEndTime": "2024-01-01T14:00:00Z",
+    "isDefaultBroadcast": false,
+    "liveChatId": "test_live_chat_id"
+  },
+  "status": {
+    "lifeCycleStatus": "created",
+    "privacyStatus": "private",
+    "recordingStatus": "notRecording",
+    "madeForKids": false,
+    "selfDeclaredMadeForKids": false
+  },
+  "contentDetails": {
+    "monitorStream": {
+      "enableMonitorStream": true,
+      "broadcastStreamDelayMs": 0,
+      "embedHtml": "<iframe></iframe>"
+    },
+    "enableEmbed": true,
+    "enableDvr": true,
+    "enableContentEncryption": false,
+    "recordFromStart": true,
+    "enableClosedCaptions": false,
+    "closedCaptionsType": "closedCaptionsDisabled",
+    "enableLowLatency": false,
+    "latencyPreference": "normal",
+    "projection": "rectangular",
+    "enableAutoStart": true,
+    "enableAutoStop": true
+  }
+}

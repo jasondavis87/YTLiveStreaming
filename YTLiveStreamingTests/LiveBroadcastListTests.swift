@@ -26,6 +26,23 @@ class LiveBroadcastListTestCase: XCTestCase {
             XCTAssertEqual(model.items.count, 3)
         }
     }
+
+    func testLiveBroadcastStreamModel() {
+        if let model = broadcastListDataProvider.getBroadcastStream() {
+            XCTAssertEqual(model.id, "test_broadcast_id")
+            XCTAssertEqual(model.kind, "youtube#liveBroadcast")
+            XCTAssertEqual(model.snippet.title, "Test Live Broadcast")
+            XCTAssertEqual(model.snippet.channelId, "UCtest_channel_id")
+            XCTAssertEqual(model.snippet.isDefaultBroadcast, false)
+            XCTAssertNotNil(model.snippet.thumbnails.def)
+            XCTAssertNotNil(model.snippet.thumbnails.high)
+            XCTAssertNotNil(model.snippet.thumbnails.medium)
+            XCTAssertEqual(model.contentDetails?.latencyPreference, "normal")
+            XCTAssertEqual(model.contentDetails?.enableContentEncryption, false)
+            XCTAssertEqual(model.status?.lifeCycleStatus, "created")
+            XCTAssertEqual(model.status?.privacyStatus, "private")
+        }
+    }
 }
 
 // MARK: -
@@ -38,6 +55,17 @@ private class BroadcastListMockDataProvider {
             return model
         case .failure(let error):
             XCTFail("Failed to parse. Error: \(error.message())")
+            return nil
+        }
+    }
+
+    func getBroadcastStream() -> LiveBroadcastStreamModel? {
+        let bundle = Bundle(for: BroadcastListMockDataProvider.self)
+        switch DecodeData.load(bundle, "LiveBroadcastStreamModel.json", as: LiveBroadcastStreamModel.self) {
+        case .success(let model):
+            return model
+        case .failure(let error):
+            XCTFail("Failed to parse LiveBroadcastStreamModel. Error: \(error.message())")
             return nil
         }
     }

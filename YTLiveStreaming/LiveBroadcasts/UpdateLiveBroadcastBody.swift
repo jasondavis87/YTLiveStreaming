@@ -39,14 +39,14 @@ struct UpdateLiveBroadcastBody: Codable {
         var recordFromStart: Bool
         
         init(contentDetails: LiveBroadcastStreamModel.ContentDetails) {
-            monitorStream = MonitorStream(enableMonitorStream: contentDetails.monitorStream.enableMonitorStream,
-                                          broadcastStreamDelayMs: contentDetails.monitorStream.broadcastStreamDelayMs)
-            enableAutoStart = contentDetails.enableAutoStart
-            enableAutoStop = contentDetails.enableAutoStop
-            enableClosedCaptions = contentDetails.enableClosedCaptions
-            enableDvr = contentDetails.enableDvr
-            enableEmbed = contentDetails.enableEmbed
-            recordFromStart = contentDetails.recordFromStart
+            monitorStream = MonitorStream(enableMonitorStream: contentDetails.monitorStream?.enableMonitorStream ?? true,
+                                          broadcastStreamDelayMs: contentDetails.monitorStream?.broadcastStreamDelayMs ?? 0)
+            enableAutoStart = contentDetails.enableAutoStart ?? false
+            enableAutoStop = contentDetails.enableAutoStop ?? false
+            enableClosedCaptions = contentDetails.enableClosedCaptions ?? false
+            enableDvr = contentDetails.enableDvr ?? true
+            enableEmbed = contentDetails.enableEmbed ?? true
+            recordFromStart = contentDetails.recordFromStart ?? true
         }
     }
 

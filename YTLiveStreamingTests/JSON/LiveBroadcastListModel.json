@@ -57,7 +57,7 @@
                     "embedHtml" : "<iframe width=\"425\" height=\"344\" src=\"https:\/\/www.youtube.com\/embed\/sGCYiZ-ycK8?autoplay=1&livemonitor=1\" frameborder=\"0\" allowfullscreen><\/iframe>"
                 },
                 "enableLowLatency": false,
-                "latencyPreference": false,
+                "latencyPreference": "normal",
                 "enableAutoStart": false,
                 "enableAutoStop": false
             }

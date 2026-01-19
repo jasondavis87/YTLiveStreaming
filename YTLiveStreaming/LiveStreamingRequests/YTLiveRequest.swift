@@ -29,6 +29,9 @@ extension YTLiveRequest {
                 var headers: HTTPHeaders = [.contentType("application/json")]
                 headers.add(.accept("application/json"))
                 headers.add(.authorization("Bearer \(token)"))
+                if let bundleIdentifier = Bundle.main.bundleIdentifier {
+                    headers.add(name: "X-Ios-Bundle-Identifier", value: bundleIdentifier)
+                }
                 completion(headers)
             } else {
                 completion(nil)
