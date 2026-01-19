@@ -493,7 +493,7 @@ extension YTLiveRequest {
                 return
             }
             let encoder = JSONBodyStringEncoding(jsonBody: jsonString)
-            let url = "\(LiveAPI.BaseURL)/liveStreams?part=id,snippet,cdn,status&key=\(Credentials.APIkey)"
+            let url = "\(LiveAPI.BaseURL)/liveStreams?part=id,snippet,cdn,contentDetails,status&key=\(Credentials.APIkey)"
             AF.request(url, method: .post, parameters: [:], encoding: encoder, headers: headers)
                 .validate()
                 .responseData { response in
