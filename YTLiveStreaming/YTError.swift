@@ -13,6 +13,7 @@ public enum YTError: Error {
     case message(String)
     case systemMessage(Int, String)
     case YTMessage(YTErrorType, String)
+    case apiError(code: Int, message: String, reason: String, rawResponse: String)
 
     public func message() -> String {
         switch self {
@@ -25,6 +26,8 @@ public enum YTError: Error {
             case .deleteBroadcast:
                 return "Delete broadcast failure:\n\(message)"
             }
+        case .apiError(let code, let message, let reason, _):
+            return "API error [\(code)]: \(message) (reason: \(reason))"
         }
     }
 }

@@ -171,10 +171,13 @@ extension YTLiveRequest {
                         }
                         do {
                             let json = try JSON(data: data)
-                            let error = json["error"].stringValue
+                            let error = json["error"]
                             if !error.isEmpty {
-                                let message = json["message"].stringValue
-                                completion(.failure(.message("Error while Youtube broadcast was creating: \(message)")))
+                                let code = error["code"].intValue
+                                let message = error["message"].stringValue
+                                let reason = error["errors"][0]["reason"].stringValue
+                                let fullError = "[\(code)] \(message) (reason: \(reason))"
+                                completion(.failure(.systemMessage(code, fullError)))
                             } else {
                                 // print(json)
                                 let decoder = JSONDecoder()
@@ -237,10 +240,13 @@ extension YTLiveRequest {
                         }
                         do {
                             let json = try JSON(data: data)
-                            let error = json["error"].stringValue
+                            let error = json["error"]
                             if !error.isEmpty {
-                                let message = json["message"].stringValue
-                                completion(.failure(.message("Error while Youtube broadcast was creating" + message)))
+                                let code = error["code"].intValue
+                                let message = error["message"].stringValue
+                                let reason = error["errors"][0]["reason"].stringValue
+                                let fullError = "[\(code)] \(message) (reason: \(reason))"
+                                completion(.failure(.systemMessage(code, fullError)))
                             } else {
                                 completion(.success(Void()))
                             }
@@ -507,8 +513,11 @@ extension YTLiveRequest {
                             let json = try JSON(data: data)
                             let error = json["error"]
                             if !error.isEmpty {
-                                let message = json["message"].stringValue
-                                completion(.failure(.message("Error while Youtube broadcast was creating: " + message)))
+                                let code = error["code"].intValue
+                                let message = error["message"].stringValue
+                                let reason = error["errors"][0]["reason"].stringValue
+                                let fullError = "[\(code)] \(message) (reason: \(reason))"
+                                completion(.failure(.systemMessage(code, fullError)))
                             } else {
                                 let liveStream = LiveStreamModel.decode(json)
                                 completion(.success(liveStream))
@@ -547,10 +556,13 @@ extension YTLiveRequest {
             case let .success(response):
                 do {
                     let json = try JSON(data: response.data)
-                    let error = json["error"].stringValue
+                    let error = json["error"]
                     if !error.isEmpty {
-                        let message = json["message"].stringValue
-                        completion(.failure(.message(error + ";" + message)))
+                        let code = error["code"].intValue
+                        let message = error["message"].stringValue
+                        let reason = error["errors"][0]["reason"].stringValue
+                        let fullError = "[\(code)] \(message) (reason: \(reason))"
+                        completion(.failure(.systemMessage(code, fullError)))
                     } else {
                         print("video stream deleted: \(json)")
                         completion(.success(Void()))
@@ -626,10 +638,13 @@ extension YTLiveRequest {
                         }
                         do {
                             let json = try JSON(data: data)
-                            let error = json["error"].stringValue
+                            let error = json["error"]
                             if !error.isEmpty {
-                                let message = json["message"].stringValue
-                                completion(.failure(.message("Error while Youtube broadcast was creating" + message)))
+                                let code = error["code"].intValue
+                                let message = error["message"].stringValue
+                                let reason = error["errors"][0]["reason"].stringValue
+                                let fullError = "[\(code)] \(message) (reason: \(reason))"
+                                completion(.failure(.systemMessage(code, fullError)))
                             } else {
                                 completion(.success(Void()))
                             }
