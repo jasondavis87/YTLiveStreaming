@@ -63,8 +63,8 @@ struct UpdateLiveBroadcastBody: Codable {
             description = broadcast.snippet.description
             scheduledStartTime = broadcast.snippet.scheduledStartTime?.toJSONformat()
             scheduledEndTime = broadcast.snippet.scheduledEndTime?.toJSONformat()
-            if let broadcastStatus = broadcast.status {
-                status = Status(privacyStatus: broadcastStatus.privacyStatus)
+            if let broadcastStatus = broadcast.status, let privacyStatus = broadcastStatus.privacyStatus {
+                status = Status(privacyStatus: privacyStatus)
             }
             if let broadcastContentDetails = broadcast.contentDetails {
                 contentDetails = ContentDetails(contentDetails: broadcastContentDetails)
